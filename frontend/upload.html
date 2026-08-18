@@ -10,10 +10,14 @@
     <h1>UPLOAD A GIF</h1>
     <br><br>
 
-    <form action="" method="post" enctype="multipart/form-data">
-        <input type="file" accept=".gif">
+    <form id="upload-form">
+        <input type="file" id="fileInput" accept=".gif">
+        <br><br>
+        <input type="submit" value="Upload">
     </form>
     
+    <p id="status"></p>
+
     <script>
         const test = async () => {
             const req = await fetch("/api/shows-and-characters");
@@ -22,6 +26,40 @@
         }
 
         test()
+
+        document.getElementById("upload-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const fileInput = document.getElementById("fileInput");
+            const statusText = document.getElementById("status");
+
+            if (fileInput.files.length === 0) return;
+
+            const formdata = new FormData();
+            formdata.append("file", fileInput.files[0])
+
+            statusText.innerText = "Uploading..."
+
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formdata
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    statusText.innerText = JSON.stringify(result);
+                } else {
+                    statusText.innerText = `Upload failed: ${result.message}`
+                }
+            } catch (error) {
+                statusText.innerText = "An error occurred during upload."
+                console.error(error)
+            }
+
+        })
+
     </script>
 
 </body>

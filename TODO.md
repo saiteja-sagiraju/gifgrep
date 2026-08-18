@@ -3,17 +3,17 @@
 Tracking checklist derived from the Implementation & QA Breakdown in the design doc.
 
 ## Phase 1 — Database & Environment
-- [ ] Initialize local Turso instance
-- [ ] Execute schema: `shows`, `characters`, `gifs`, `gif_characters` tables
-- [ ] Create `idx_gifs_vec` vector index
-- [ ] Create `idx_gifs_fts` Tantivy FTS index (`ngram` tokenizer)
-- [ ] Write setup script to pre-seed Knowledge Base (`shows` + `characters`)
+- [X] ~~Initialize local Turso instance~~
+- [X] ~~Execute schema: `shows`, `characters`, `gifs`, `gif_characters` tables~~
+- [X] ~~Create `idx_gifs_vec` vector index~~
+- [X] ~~Create `idx_gifs_fts` Tantivy FTS index (`ngram` tokenizer)~~
+- [X] ~~Write setup script to pre-seed Knowledge Base (`shows` + `characters`)~~
 
 ## Phase 2 — Extraction & ML Models
-- [ ] Implement `VideoCLIP` class (confirm full VRAM load)
-- [ ] Implement EasyOCR CPU sidecar
-- [ ] Add OCR text deduplication (Python hash-set)
-- [ ] **Stress test**: batch process 3 GIFs concurrently, confirm thread-locking prevents VRAM OOM
+- [X] ~~Implement `VideoCLIP` class (confirm full VRAM load)~~
+- [X] ~~Implement EasyOCR CPU sidecar~~
+- [X] ~~Add OCR text deduplication (Python hash-set)~~
+- [X] ~~**Stress test**: batch process 3 GIFs concurrently, confirm thread-locking prevents VRAM OOM~~
 
 ## Phase 3 — The Application API
 - [ ] Build `POST /api/upload` (`BackgroundTasks` + `asyncio.to_thread`)

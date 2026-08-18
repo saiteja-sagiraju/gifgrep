@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS gifs (
     search_tags TEXT, 
     
     -- VideoCLIP temporal vector
-    embedding F32_BLOB(512) 
+    embedding F32_BLOB(768) 
 );
 
 -- 3. The Many-to-Many Link (For strict relational queries if needed)
